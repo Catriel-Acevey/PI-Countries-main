@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     difficulty: {
-      type: DataTypes.STRING, // valor entre 1 y 5 como lo hago?
+      type: DataTypes.INTEGER,
     },
     duration: {
-      type: DataTypes.STRING, //como guardo la duracion?
+      type: DataTypes.STRING, //revisar (puede ser range)
     },
     season: {
       type: DataTypes.ENUM("Verano", "Otoño", "Invierno", "Primavera"),
