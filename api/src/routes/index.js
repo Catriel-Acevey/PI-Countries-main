@@ -20,27 +20,62 @@ const emptyDb = async () => {
   if (!db.length) return true;
   return false;
 };
+const rawCountry = (country) => {
+  const {
+    cca3,
+    name,
+    flags,
+    continents,
+    capital,
+    subregion,
+    area,
+    population,
+  } = country;
+  if (!cca3 || !name || !flags || !continents || !capital)
+    throw new Error("no recive todos los campos necesarios");
+  return {
+    ID: cca3,
+    name: name.common,
+    flag_image: flags[1],
+    continent: continents[0],
+    capital: capital[0],
+    subregion: subregion ? subregion : null,
+    area: area ? area : 0,
+    population: population ? population : 0,
+  };
+};
 const fillDb = async (apiCountries) => {
   try {
-    if (await emptyDb()) {
-      for (c of apiCountries) {
-        await Country.create({
-          ID: c.cca3,
-          name: c.name.common,
-          flag_image: c.flags[1],
-          continent: c.continents[0],
-          capital: c.capital[0],
-          subregion: c.subregion,
-          area: c.area,
-          population: c.population,
-        });
+    let count = 0;
+    console.log("La cantidad de paises q me viene son: ", apiCountries.length);
+    // if (await emptyDb()) {
+    const countriesLength = apiCountries.length;
+    for (let i = 0; i < countriesLength; i++) {
+      count++;
+      try {
+        const country = rawCountry(apiCountries[i]);
+
+        await Country.create(country);
+      } catch (err) {
+        console.log(err);
       }
+
+      // }
+      console.log("La cantidad de paises en la db es: ", count);
     }
   } catch (err) {
     console.log(err);
   }
 };
-//revisar los ordenamientos
+const getAll = async () => {
+  try {
+    let countries = await Country.findAll();
+    return countries;
+  } catch (err) {
+    console.log(err);
+  }
+};
+//revisar los include model
 const getCountries = async (query) => {
   const { name, filter, page, order, orderBy } = query;
   if (name) {
@@ -64,8 +99,7 @@ const getCountries = async (query) => {
         },
         limit: ITEMS_PER_PAGE,
         offset: page * ITEMS_PER_PAGE,
-        orderPopulation: [orderBy, order],
-        orderName: [orderBy, order],
+        order: [[orderBy, order]],
         include: { model: Activity },
       });
       return countries;
@@ -77,8 +111,7 @@ const getCountries = async (query) => {
       let countries = await Country.findAll({
         limit: ITEMS_PER_PAGE,
         offset: page * ITEMS_PER_PAGE,
-        orderPopulation: [orderBy, order],
-        orderName: [orderBy, order],
+        order: [[orderBy, order]],
         include: { model: Activity },
       });
       return countries;
@@ -112,12 +145,22 @@ const createActivity = async (body) => {
   }
 };
 
+const deleteDbData = async () => {
+  try {
+    await Country.destroy({
+      where: {},
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 router.get("/countries", async (req, res) => {
   const apiCountries = await getApiCountries();
 
   // console.log("los paises de la api: ", apiCountries);
 
-  await fillDb(apiCountries);
+  if (await emptyDb()) await fillDb(apiCountries);
 
   const countries = await getCountries(req.query);
 
