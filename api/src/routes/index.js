@@ -20,7 +20,7 @@ const emptyDb = async () => {
   if (!db.length) return true;
   return false;
 };
-const rawCountry = (country) => {
+const rowCountry = (country) => {
   const {
     cca3,
     name,
@@ -53,7 +53,7 @@ const fillDb = async (apiCountries) => {
     for (let i = 0; i < countriesLength; i++) {
       count++;
       try {
-        const country = rawCountry(apiCountries[i]);
+        const country = rowCountry(apiCountries[i]);
 
         await Country.create(country);
       } catch (err) {
