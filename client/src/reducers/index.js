@@ -14,6 +14,37 @@ const initialState = {
 
 const cases = {};
 
+cases[GET_COUNTRIES] = (state, payload) => {
+  return {
+    ...state,
+    countries: payload,
+  };
+};
+cases[GET_NAME_COUNTRIES] = (state, payload) => {
+  return {
+    ...state,
+    countries: payload,
+  };
+};
+cases[GET_NAME_COUNTRIES_FORM] = (state, payload) => {
+  return {
+    ...state,
+    countriesForm: payload,
+  };
+};
+cases[CLEAR_NAME_COUNTRIES_FORM] = (state, payload) => {
+  return {
+    ...state,
+    countriesForm: [],
+  };
+};
+cases[GET_DETAILS] = (state, payload) => {
+  return {
+    ...state,
+    detail: payload,
+  };
+};
+
 function rootReducer(state = initialState, { type, payload }) {
   return cases[type] ? cases[type](state, payload) : state;
 }
