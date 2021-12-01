@@ -46,12 +46,10 @@ const rowCountry = (country) => {
 };
 const fillDb = async (apiCountries) => {
   try {
-    let count = 0;
-    console.log("La cantidad de paises q me viene son: ", apiCountries.length);
+    // console.log("La cantidad de paises q me viene son: ", apiCountries.length);
     // if (await emptyDb()) {
     const countriesLength = apiCountries.length;
     for (let i = 0; i < countriesLength; i++) {
-      count++;
       try {
         const country = rowCountry(apiCountries[i]);
 
@@ -61,7 +59,7 @@ const fillDb = async (apiCountries) => {
       }
 
       // }
-      console.log("La cantidad de paises en la db es: ", count);
+      // console.log("La cantidad de paises en la db es: ", i);
     }
   } catch (err) {
     console.log(err);
