@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Detail from "./components/Detail";
 import Activity from "./components/Activity";
 
-import "./App.css";
+// import "./App.css";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Route exact path="/" component={Landing} />
       <Route path="/home" component={Nav} />
       <Route exact path="/home" component={Home} />
-      <Route path="/home/:id" component={Detail} />
+      <Route path="/home/0" component={Detail} />
       <Route path="/home/activity" component={Activity} />
     </div>
   );
