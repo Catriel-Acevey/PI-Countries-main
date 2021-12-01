@@ -32,7 +32,7 @@ cases[GET_NAME_COUNTRIES_FORM] = (state, payload) => {
     countriesForm: payload,
   };
 };
-cases[CLEAR_NAME_COUNTRIES_FORM] = (state, payload) => {
+cases[CLEAR_NAME_COUNTRIES_FORM] = (state) => {
   return {
     ...state,
     countriesForm: [],
