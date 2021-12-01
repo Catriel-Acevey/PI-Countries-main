@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Landing = () => {
+const Landing = (props) => {
   return (
     <div>
       <h1> Soy Landing en "/" </h1>
