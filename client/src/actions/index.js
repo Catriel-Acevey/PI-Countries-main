@@ -1,4 +1,5 @@
 import axios from "axios";
+export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_NAME_COUNTRIES = "GET_NAME_COUNTRIES";
 export const GET_NAME_COUNTRIES_FORM = "GET_NAME_COUNTRIES_FORM";
@@ -19,6 +20,16 @@ export function getCountries(page, orderBy, order, filter) {
           filter
       );
       return dispatch({ type: GET_COUNTRIES, payload: json.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+export function getAllCountries() {
+  return async function (dispatch) {
+    try {
+      var json = await axios("http://localhost:3001/countries");
+      return dispatch({ type: GET_ALL_COUNTRIES, payload: json.data });
     } catch (err) {
       console.log(err);
     }

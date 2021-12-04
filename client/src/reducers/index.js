@@ -1,4 +1,5 @@
 import {
+  GET_ALL_COUNTRIES,
   GET_COUNTRIES,
   GET_NAME_COUNTRIES,
   GET_NAME_COUNTRIES_FORM,
@@ -14,6 +15,12 @@ const initialState = {
 
 const cases = {};
 
+cases[GET_ALL_COUNTRIES] = (state, payload) => {
+  return {
+    ...state,
+    countries: payload,
+  };
+};
 cases[GET_COUNTRIES] = (state, payload) => {
   return {
     ...state,

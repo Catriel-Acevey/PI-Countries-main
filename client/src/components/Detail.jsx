@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getDetails } from "../actions";
 
-const Detail = () => {
+const Detail = (props) => {
+  // console.log("A Details me llega por props: ", props);
+  // console.log("La id esta en la ruta: ", props.match.params.id);
+  const ID = props.match.params.id;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDetails(ID));
+  }, [dispatch]);
+  const country = useSelector((state) => state.detail);
+  // console.log("El pais contiene: ", country);
   return (
     <div>
-      <h1> Soy detail en "/home/0" </h1>
+      <h1> Name: {country.name} </h1>
+      <h3> Abreviatura: {country.ID}</h3>
+      <img src={country.flag_image} placeholder="flag not found" />
+      <h3> Capital: {country.capital}</h3>
+      <h3> Continente: {country.continent}</h3>
+      <h3> Subregion: {country.subregion}</h3>
+      <h3> Area: {country.area} KM²</h3>
+      <h3> Poblacion: {country.population}</h3>
+      <Link to="/home">
+        <button> Volver </button>
+      </Link>
+      {/* Agregar las actividades */}
     </div>
   );
 };

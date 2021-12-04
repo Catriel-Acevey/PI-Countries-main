@@ -1,13 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const CountryCard = () => {
+const CountryCard = ({ name, continent, flag_image }) => {
   return (
     <div>
-      <h1>Soy un CountryCard</h1>
-      <Link to="/home/0">
-        <button> boton de card </button>
-      </Link>
+      <img src={flag_image} alt="flag not found" />
+      <h3>{name}</h3>
+      <h3>{continent}</h3>
     </div>
   );
 };
