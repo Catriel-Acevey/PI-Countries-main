@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch } from "react-router";
 import { Route } from "react-router-dom";
 
 import Landing from "./components/Landing";
@@ -14,9 +15,11 @@ function App() {
     <div className="App">
       <Route exact path="/" component={Landing} />
       <Route path="/home" component={Nav} />
-      <Route exact path="/home" component={Home} />
-      <Route path="/home/:id" component={Detail} />
-      <Route path="/home/activity" component={Activity} />
+      <Switch>
+        <Route path="/home/activity" component={Activity} />
+        <Route path="/home/:id" component={Detail} />
+        <Route path="/home" component={Home} />
+      </Switch>
     </div>
   );
 }
