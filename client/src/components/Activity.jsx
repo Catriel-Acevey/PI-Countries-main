@@ -33,10 +33,10 @@ const Activity = (props) => {
 
   useEffect(() => {
     setCountries([...countries, ...countriesForm]);
-    setCountriesIds([...new Set(countries.map((c) => c.id))]);
+    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
   }, [dispatch, countriesForm]);
   useEffect(() => {
-    setCountriesIds([...new Set(countries.map((c) => c.id))]);
+    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
   }, [dispatch, countries]);
 
   const submit = (e) => {
@@ -73,8 +73,8 @@ const Activity = (props) => {
   };
   const deleteCountry = (e, id) => {
     e.preventDefault();
-    setCountries(countries.filter((c) => c.id !== id));
-    setCountriesIds([...new Set(countries.map((c) => c.id))]);
+    setCountries(countries.filter((c) => c.ID !== id));
+    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
   };
 
   return (
@@ -120,10 +120,10 @@ const Activity = (props) => {
         <div>
           {countries.map((country) => {
             return (
-              <div>
-                <button onClick={(e) => deleteCountry(e, country.id)}>X</button>
+              <div key={country.ID}>
+                <button onClick={(e) => deleteCountry(e, country.ID)}>X</button>
                 <CountryCard
-                  key={country.ID} //Revisar warning con la key
+                  //Revisar warning con la key
                   name={country.name}
                   continent={country.continent}
                   flag_image={country.flag_image}

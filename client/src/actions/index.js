@@ -70,7 +70,7 @@ export function getDetails(id) {
     }
   };
 }
-export function postActivity(name, difficulty, duration, season, ids) {
+export function postActivity(name, difficulty, duration, season, countriesIds) {
   return async function (dispatch) {
     try {
       var response = await axios.post("http://localhost:3001/activity", {
@@ -78,7 +78,7 @@ export function postActivity(name, difficulty, duration, season, ids) {
         difficulty,
         duration,
         season,
-        ids,
+        countriesIds,
       });
       return response;
     } catch (err) {

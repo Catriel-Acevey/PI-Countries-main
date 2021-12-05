@@ -1,9 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
     <div>
-      <h1> Soy un Nav</h1>
+      <NavLink to="/home" activeClassName="active">
+        Home
+      </NavLink>
+      <NavLink to="/home/activity" activeClassName="active">
+        Create Activity
+      </NavLink>
     </div>
   );
 };

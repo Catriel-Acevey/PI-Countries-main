@@ -136,7 +136,7 @@ const createActivity = async (body) => {
         season: body.season,
       },
     });
-    await activity.setCountries(body.ids);
+    await activity.setCountries(body.countriesIds);
     return activity;
   } catch (err) {
     console.log(err);

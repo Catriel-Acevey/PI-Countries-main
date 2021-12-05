@@ -115,10 +115,10 @@ const Home = () => {
       <div>
         {countries.map((country) => {
           return (
-            <div>
+            <div key={country.ID}>
               <Link to={"/home/" + country.ID}>
                 <CountryCard
-                  key={country.ID} //Revisar warning con la key
+                  //Revisar warning con la key
                   name={country.name}
                   continent={country.continent}
                   flag_image={country.flag_image}
