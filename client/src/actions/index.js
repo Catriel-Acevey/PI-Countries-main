@@ -5,6 +5,8 @@ export const GET_NAME_COUNTRIES = "GET_NAME_COUNTRIES";
 export const GET_NAME_COUNTRIES_FORM = "GET_NAME_COUNTRIES_FORM";
 export const CLEAR_NAME_COUNTRIES_FORM = "CLEAR_NAME_COUNTRIES_FORM";
 export const GET_DETAILS = "GET_DETAILS";
+export const GET_ACTIVITYS = "GET_ACTIVITYS";
+export const GET_ACTIVITYS_ALL = "GET_ACTIVITYS_ALL";
 
 export function getCountries(page, orderBy, order, filter) {
   return async function (dispatch) {
@@ -45,6 +47,17 @@ export function getNameCountries(name) {
     }
   };
 }
+// export function getNameCountries(name) {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios("http://localhost:3001/countriesAll");
+//       return dispatch({ type: GET_NAME_COUNTRIES, payload: json.data });
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// }
+
 export function getNameCountriesForm(name) {
   return async function (dispatch) {
     try {
@@ -81,6 +94,16 @@ export function postActivity(name, difficulty, duration, season, countriesIds) {
         countriesIds,
       });
       return response;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+export function getAllActivitys() {
+  return async function (dispatch) {
+    try {
+      var json = await axios("http://localhost:3001/activity");
+      return dispatch({ type: GET_ACTIVITYS_ALL, payload: json.data });
     } catch (err) {
       console.log(err);
     }

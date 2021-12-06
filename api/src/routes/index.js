@@ -143,6 +143,28 @@ const createActivity = async (body) => {
   }
 };
 
+const getAllActivitys = async () => {
+  try {
+    let activitys = await Activity.findAll();
+    return activitys;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getActivitys = async (id) => {
+  try {
+    let activitys = await countries_activities.findAll({
+      where: {
+        countryID: id,
+      },
+    });
+    return activitys;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const deleteDbData = async () => {
   try {
     await Country.destroy({
@@ -152,6 +174,16 @@ const deleteDbData = async () => {
     console.log(err);
   }
 };
+
+router.get("/countries/all", async (req, res) => {
+  const apiCountries = await getApiCountries();
+
+  if (await emptyDb()) await fillDb(apiCountries);
+
+  const countries = await getAll();
+
+  res.json(countries);
+});
 
 router.get("/countries", async (req, res) => {
   const apiCountries = await getApiCountries();
@@ -174,6 +206,16 @@ router.post("/activity", async (req, res) => {
   // console.log("El body que me pasan es: ", req.body);
   const activity = await createActivity(req.body);
   res.json(activity);
+});
+
+router.get("/activity", async (req, res) => {
+  const activitys = await getAllActivitys();
+  res.json(activitys);
+});
+
+router.get("/activity/:id", async (req, res) => {
+  const idActivitys = await getActivitys(req.params.id);
+  res.json(idActivitys);
 });
 
 module.exports = router;

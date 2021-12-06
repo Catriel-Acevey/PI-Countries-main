@@ -17,7 +17,7 @@ const Detail = (props) => {
     <div>
       <h1> Name: {country.name} </h1>
       <h3> Abreviatura: {country.ID}</h3>
-      <img src={country.flag_image} placeholder="flag not found" />
+      <img src={country.flag_image} alt="flag not found" />
       <h3> Capital: {country.capital}</h3>
       <h3> Continente: {country.continent}</h3>
       <h3> Subregion: {country.subregion}</h3>
