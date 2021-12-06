@@ -109,3 +109,13 @@ export function getAllActivitys() {
     }
   };
 }
+export function getActivitys(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios("http://localhost:3001/activity/" + id);
+      return dispatch({ type: GET_ACTIVITYS, payload: json.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}

@@ -61,7 +61,12 @@ cases[GET_ACTIVITYS_ALL] = (state, payload) => {
     activitys: payload,
   };
 };
-cases[GET_ACTIVITYS] = (state, payload) => {};
+cases[GET_ACTIVITYS] = (state, payload) => {
+  return {
+    ...state,
+    idsActivitys: payload.map((a) => a.activity.Id),
+  };
+};
 
 function rootReducer(state = initialState, { type, payload }) {
   return cases[type] ? cases[type](state, payload) : state;
