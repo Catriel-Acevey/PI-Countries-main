@@ -1,25 +1,18 @@
 import axios from "axios";
-export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_NAME_COUNTRIES = "GET_NAME_COUNTRIES";
 export const GET_NAME_COUNTRIES_FORM = "GET_NAME_COUNTRIES_FORM";
 export const CLEAR_NAME_COUNTRIES_FORM = "CLEAR_NAME_COUNTRIES_FORM";
 export const GET_DETAILS = "GET_DETAILS";
-export const GET_ACTIVITYS = "GET_ACTIVITYS";
-export const GET_ACTIVITYS_ALL = "GET_ACTIVITYS_ALL";
+export const FILTER_REGION = "FILTER_REGION";
+export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
 
-export function getCountries(page, orderBy, order, filter) {
+export function getCountries(orderBy, order) {
   return async function (dispatch) {
     try {
       var json = await axios(
-        "http://localhost:3001/countries?page=" +
-          page +
-          "&orderBy=" +
-          orderBy +
-          "&order=" +
-          order +
-          "&filter=" +
-          filter
+        "http://localhost:3001/countries?orderBy=" + orderBy + "&order=" + order
       );
       return dispatch({ type: GET_COUNTRIES, payload: json.data });
     } catch (err) {
@@ -27,16 +20,7 @@ export function getCountries(page, orderBy, order, filter) {
     }
   };
 }
-export function getAllCountries() {
-  return async function (dispatch) {
-    try {
-      var json = await axios("http://localhost:3001/countries");
-      return dispatch({ type: GET_ALL_COUNTRIES, payload: json.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
+
 export function getNameCountries(name) {
   return async function (dispatch) {
     try {
@@ -47,16 +31,6 @@ export function getNameCountries(name) {
     }
   };
 }
-// export function getNameCountries(name) {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios("http://localhost:3001/countriesAll");
-//       return dispatch({ type: GET_NAME_COUNTRIES, payload: json.data });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// }
 
 export function getNameCountriesForm(name) {
   return async function (dispatch) {
@@ -99,21 +73,24 @@ export function postActivity(name, difficulty, duration, season, countriesIds) {
     }
   };
 }
-export function getAllActivitys() {
+export function filterRegion(payload) {
+  return {
+    type: FILTER_REGION,
+    payload,
+  };
+}
+export function filterActivity(payload) {
+  return {
+    type: FILTER_ACTIVITY,
+    payload,
+  };
+}
+
+export function getActivities() {
   return async function (dispatch) {
     try {
       var json = await axios("http://localhost:3001/activity");
-      return dispatch({ type: GET_ACTIVITYS_ALL, payload: json.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
-export function getActivitys(id) {
-  return async function (dispatch) {
-    try {
-      var json = await axios("http://localhost:3001/activity/" + id);
-      return dispatch({ type: GET_ACTIVITYS, payload: json.data });
+      return dispatch({ type: GET_ACTIVITIES, payload: json.data });
     } catch (err) {
       console.log(err);
     }

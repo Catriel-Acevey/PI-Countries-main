@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Detail from "./components/Detail";
 import Activity from "./components/Activity";
 
-// import "./App.css";
+import "./App.css";
 
 function App() {
   return (

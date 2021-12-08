@@ -1,34 +1,29 @@
 import {
-  GET_ALL_COUNTRIES,
   GET_COUNTRIES,
   GET_NAME_COUNTRIES,
   GET_NAME_COUNTRIES_FORM,
   CLEAR_NAME_COUNTRIES_FORM,
   GET_DETAILS,
-  GET_ACTIVITYS,
-  GET_ACTIVITYS_ALL,
+  GET_ACTIVITIES,
+  FILTER_REGION,
+  FILTER_ACTIVITY,
 } from "../actions";
 
 const initialState = {
+  allCountries: [],
   countries: [],
   countriesForm: [],
   detail: {},
-  idsActivitys: [],
-  activitys: [],
+  activities: [],
 };
 
 const cases = {};
 
-cases[GET_ALL_COUNTRIES] = (state, payload) => {
-  return {
-    ...state,
-    countries: payload,
-  };
-};
 cases[GET_COUNTRIES] = (state, payload) => {
   return {
     ...state,
     countries: payload,
+    allCountries: payload,
   };
 };
 cases[GET_NAME_COUNTRIES] = (state, payload) => {
@@ -55,16 +50,31 @@ cases[GET_DETAILS] = (state, payload) => {
     detail: payload,
   };
 };
-cases[GET_ACTIVITYS_ALL] = (state, payload) => {
+cases[GET_ACTIVITIES] = (state, payload) => {
   return {
     ...state,
-    activitys: payload,
+    activities: payload,
   };
 };
-cases[GET_ACTIVITYS] = (state, payload) => {
+cases[FILTER_REGION] = (state, payload) => {
+  let allCountries = state.allCountries;
+
+  let filtCountries =
+    payload === "All"
+      ? allCountries
+      : allCountries.filter((country) => country.continent === payload);
   return {
     ...state,
-    idsActivitys: payload.map((a) => a.activity.Id),
+    countries: filtCountries,
+  };
+};
+
+cases[FILTER_ACTIVITY] = (state, payload) => {
+  return {
+    ...state,
+    countries: state.allCountries.filter((country) =>
+      country.activities.map((activity) => activity.name).includes(payload)
+    ),
   };
 };
 

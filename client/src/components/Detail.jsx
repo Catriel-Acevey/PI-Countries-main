@@ -10,7 +10,7 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetails(ID));
-  }, [dispatch]);
+  }, [dispatch, ID]);
   const country = useSelector((state) => state.detail);
   // console.log("El pais contiene: ", country);
   return (
@@ -26,7 +26,25 @@ const Detail = (props) => {
       <Link to="/home">
         <button> Volver </button>
       </Link>
-      {/* Agregar las actividades */}
+      <div>
+        <h3>Data Activity</h3>
+        {country.activities?.length ? (
+          country.activities.map((activity) => (
+            <div>
+              <h4>
+                {" "}
+                {activity.name.charAt(0).toUpperCase() +
+                  activity.name.slice(1).toLowerCase()}
+              </h4>
+              <p>Difficulty: {activity.difficulty}</p>
+              <p>Duration: {activity.duration} minutes</p>
+              <p>Season: {activity.season}</p>
+            </div>
+          ))
+        ) : (
+          <p>It has no tourist activities assigned</p>
+        )}
+      </div>
     </div>
   );
 };
