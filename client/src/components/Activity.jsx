@@ -8,6 +8,7 @@ import {
   getNameCountriesForm,
   clearNameCountriesForm,
 } from "../actions";
+import styles from "./Activity.module.css";
 
 const SEASON = {
   SUMMER: "Verano",
@@ -78,65 +79,80 @@ const Activity = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <form onSubmit={(e) => submit(e)}>
-        <input
-          type="text"
-          placeholder=" Name "
-          onChange={(e) => changeName(e)}
-        ></input>
-        <select
-          onChange={(e) => {
-            changeDifficulty(e);
-          }}
-        >
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-        <input
-          type="text"
-          placeholder=" Duration "
-          onChange={(e) => changeDuration(e)}
-        ></input>
-        <select
-          onChange={(e) => {
-            changeSeason(e);
-          }}
-        >
-          <option value={SEASON.SUMMER}>{SEASON.SUMMER}</option>
-          <option value={SEASON.AUTUMN}>{SEASON.AUTUMN}</option>
-          <option value={SEASON.WINTER}>{SEASON.WINTER}</option>
-          <option value={SEASON.SPRING}>{SEASON.SPRING}</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Nombre del pais"
-          onChange={(e) => changeNameCountry(e)}
-        ></input>
-        <button onClick={(e) => getCountryName(e)}> Buscar </button>
-        <div>
+        <div className={styles.formRegister}>
+          <input
+            className={styles.controls + " " + styles.controlsInput}
+            type="text"
+            placeholder=" Name "
+            onChange={(e) => changeName(e)}
+          ></input>
+          <select
+            className={styles.controls + " " + styles.difficulty}
+            onChange={(e) => {
+              changeDifficulty(e);
+            }}
+          >
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <select
+            className={styles.controls + " " + styles.season}
+            onChange={(e) => {
+              changeSeason(e);
+            }}
+          >
+            <option value={SEASON.SUMMER}>{SEASON.SUMMER}</option>
+            <option value={SEASON.AUTUMN}>{SEASON.AUTUMN}</option>
+            <option value={SEASON.WINTER}>{SEASON.WINTER}</option>
+            <option value={SEASON.SPRING}>{SEASON.SPRING}</option>
+          </select>
+          <input
+            className={styles.controls + " " + styles.controlsInput}
+            type="text"
+            placeholder=" Duration "
+            onChange={(e) => changeDuration(e)}
+          ></input>
+          <input
+            className={styles.controls + " " + styles.search}
+            type="text"
+            placeholder="Nombre del pais"
+            onChange={(e) => changeNameCountry(e)}
+          ></input>
+          <button
+            className={styles.btnActivity}
+            onClick={(e) => getCountryName(e)}
+          >
+            {" "}
+            Buscar{" "}
+          </button>
+          <button className={styles.btnActivity} type="submit">
+            Enviar
+          </button>
+        </div>
+        <div className={styles.containerCountry}>
           {countries.map((country) => {
             return (
-              <div key={country.ID}>
-                <button onClick={(e) => deleteCountry(e, country.ID)}>X</button>
+              <Link
+                to=""
+                key={country.ID}
+                onClick={(e) => deleteCountry(e, country.ID)}
+              >
                 <CountryCard
                   //Revisar warning con la key
                   name={country.name}
                   continent={country.continent}
                   flag_image={country.flag_image}
                 />
-              </div>
+              </Link>
             );
           })}
         </div>
-        <input type="submit" />
       </form>
-      <Link to="/home">
-        <button> Volver </button>
-      </Link>
     </div>
   );
 };

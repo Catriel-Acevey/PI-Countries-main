@@ -5,11 +5,20 @@ import styles from "./Nav.module.css";
 const Nav = () => {
   return (
     <div className={styles.nav}>
-      <NavLink to="/home" activeClassName="active">
-        Home
+      <NavLink
+        exact
+        to="/home"
+        className={styles.link}
+        activeClassName={styles.active}
+      >
+        <p>Home</p>
       </NavLink>
-      <NavLink to="/home/activity" activeClassName="active">
-        Create Activity
+      <NavLink
+        to="/home/activity"
+        className={styles.link}
+        activeClassName={styles.active}
+      >
+        <p>Create Activity</p>
       </NavLink>
     </div>
   );

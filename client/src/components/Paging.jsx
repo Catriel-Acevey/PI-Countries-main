@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Paging.module.css";
 
 export default function Paging({
   countriesPerPage,
@@ -11,33 +12,38 @@ export default function Paging({
     pageNumbers.push(i + 1);
   }
   pageNumbers.pop();
-  //   return (
-  //     <div>
-  //       <ul>
-  //         {pageNumbers &&
-  //           pageNumbers.map((number) => {
-  //             return (
-  //               <li key={number}>
-  //                 <button onClick={() => paging(number)}>{number}</button>
-  //               </li>
-  //             );
-  //           })}
-  //       </ul>
-  //     </div>
-  //   );
   return (
-    <div>
+    <div className={styles.paging}>
       <ul>
-        {pageNumbers.map((number) => {
-          return (
-            <button key={number} onClick={() => paging(number)}>
-              <li>
-                <span>{number}</span>
+        {pageNumbers &&
+          pageNumbers.map((number) => {
+            return (
+              <li key={number}>
+                <button
+                  className={styles.btnPage}
+                  onClick={() => paging(number)}
+                >
+                  {number}
+                </button>
               </li>
-            </button>
-          );
-        })}
+            );
+          })}
       </ul>
     </div>
   );
+  // return (
+  //   <div>
+  //     <ul>
+  //       {pageNumbers.map((number) => {
+  //         return (
+  //           <button key={number} onClick={() => paging(number)}>
+  //             <li>
+  //               <span>{number}</span>
+  //             </li>
+  //           </button>
+  //         );
+  //       })}
+  //     </ul>
+  //   </div>
+  // );
 }

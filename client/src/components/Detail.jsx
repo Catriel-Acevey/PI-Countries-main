@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getDetails } from "../actions";
+import styles from "./Detail.module.css";
 
 const Detail = (props) => {
   // console.log("A Details me llega por props: ", props);
@@ -14,7 +14,7 @@ const Detail = (props) => {
   const country = useSelector((state) => state.detail);
   // console.log("El pais contiene: ", country);
   return (
-    <div>
+    <div className={styles.container}>
       <h1> Name: {country.name} </h1>
       <h3> Abreviatura: {country.ID}</h3>
       <img src={country.flag_image} alt="flag not found" />
@@ -23,11 +23,8 @@ const Detail = (props) => {
       <h3> Subregion: {country.subregion}</h3>
       <h3> Area: {country.area} KM²</h3>
       <h3> Poblacion: {country.population}</h3>
-      <Link to="/home">
-        <button> Volver </button>
-      </Link>
       <div>
-        <h3>Data Activity</h3>
+        <h2>Data Activity</h2>
         {country.activities?.length ? (
           country.activities.map((activity) => (
             <div>

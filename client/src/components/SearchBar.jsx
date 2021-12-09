@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameCountries } from "../actions";
+import styles from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -19,11 +20,14 @@ const SearchBar = () => {
   return (
     <div>
       <input
+        className={styles.controls}
         type="text"
         placeholder="Search"
         onChange={(e) => inputChange(e)}
       ></input>
-      <button onClick={(e) => runClick(e)}>Search</button>
+      <button className={styles.btnActivity} onClick={(e) => runClick(e)}>
+        Search
+      </button>
     </div>
   );
 };

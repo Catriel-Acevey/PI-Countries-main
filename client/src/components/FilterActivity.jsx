@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { getActivities, filterActivity } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import styles from "./FilterActivity.module.css";
 
-//spoiler: antartida no tiene paises, pero si es un continente, por eso lo dejamos nomas
 export default function FilterActivity() {
   const dispatch = useDispatch();
 
@@ -19,7 +19,10 @@ export default function FilterActivity() {
 
   return (
     <div>
-      <select onChange={(e) => changeFilterActivity(e)}>
+      <select
+        className={styles.controls}
+        onChange={(e) => changeFilterActivity(e)}
+      >
         <option>Seleccionar</option>
         {activities?.map((activity) => (
           <option key={activity.name} value={activity.name}>

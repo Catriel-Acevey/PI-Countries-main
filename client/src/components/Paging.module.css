@@ -1,0 +1,23 @@
+.paging ul {
+  list-style: none;
+}
+
+.paging ul li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+/* .pading ul li button {
+  display: block;
+  padding: 1em 2em;
+  color: #fff;
+  background: #828282;
+} */
+
+.btnPage {
+  font-size: 0.75em;
+  width: 3em;
+  height: 3em;
+  border-radius: 2em;
+  cursor: pointer;
+}

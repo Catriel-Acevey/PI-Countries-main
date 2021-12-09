@@ -1,7 +1,7 @@
 import React from "react";
 import { filterRegion } from "../actions/index";
 import { useDispatch } from "react-redux";
-//spoiler: antartida no tiene paises, pero si es un continente, por eso lo dejamos nomas
+import styles from "./FilterRegion.module.css";
 
 export default function FilterRegion({ handleFilterRegion }) {
   const dispatch = useDispatch();
@@ -11,11 +11,15 @@ export default function FilterRegion({ handleFilterRegion }) {
   }
   return (
     <div>
-      <select onChange={(e) => changeFilterRegion(e)}>
+      <select
+        className={styles.controls}
+        onChange={(e) => changeFilterRegion(e)}
+      >
         <option value="All">All</option>
 
         <option value="Africa">Africa</option>
-        <option value="Americas">America</option>
+        <option value="South America">South America</option>
+        <option value="North America">North America</option>
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
         <option value="Oceania">Oceania</option>

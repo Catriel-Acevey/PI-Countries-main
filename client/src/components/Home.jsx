@@ -8,6 +8,7 @@ import CountryCard from "./CountryCard";
 import FilterRegion from "./FilterRegion";
 import FilterActivity from "./FilterActivity";
 import Paging from "./Paging";
+import styles from "./Home.module.css";
 // import ITEMS_PER_PAGE from "../../../api/src/routes/index";
 const ORDER = {
   ASCENDENTE: "ASC",
@@ -62,31 +63,35 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <SearchBar />
-      {/* Agregar un filtro desde el front */}
-      <div>
-        <select
-          onChange={(e) => {
-            changeOrderBy(e);
-          }}
-        >
-          <option value={ORDER_BY.NAME}>Name</option>
-          <option value={ORDER_BY.POPULATION}>population</option>
-        </select>
+    <div className={styles.containerHome}>
+      <div className={styles.containerOptions}>
+        <div>
+          <select
+            className={styles.controls}
+            onChange={(e) => {
+              changeOrderBy(e);
+            }}
+          >
+            <option value={ORDER_BY.NAME}>Name</option>
+            <option value={ORDER_BY.POPULATION}>population</option>
+          </select>
+        </div>
+        <div>
+          <select
+            className={styles.controls}
+            onChange={(e) => {
+              changeOrder(e);
+            }}
+          >
+            <option value={ORDER.ASCENDENTE}>Ascendente</option>
+            <option value={ORDER.DESCENDENTE}>Descendente</option>
+          </select>
+        </div>
+
+        <FilterRegion className={styles.controls} />
+        <FilterActivity className={styles.controls} />
+        <SearchBar />
       </div>
-      <div>
-        <select
-          onChange={(e) => {
-            changeOrder(e);
-          }}
-        >
-          <option value={ORDER.ASCENDENTE}>Ascendente</option>
-          <option value={ORDER.DESCENDENTE}>Descendente</option>
-        </select>
-      </div>
-      <FilterRegion />
-      <FilterActivity />
       <div>
         <Paging
           countriesPerPage={COUNTRIES_PER_PAGE}
@@ -94,7 +99,7 @@ const Home = () => {
           paging={paging}
         />
       </div>
-      <div>
+      <div className={styles.containerCountry}>
         {currentCountries.map((country) => {
           return (
             <div key={country.ID}>

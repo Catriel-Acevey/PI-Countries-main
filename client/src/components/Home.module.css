@@ -1,0 +1,34 @@
+.containerHome {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #cfcfcf;
+}
+
+.containerCountry {
+  display: grid;
+
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: auto;
+
+  justify-items: center;
+  justify-content: center;
+}
+
+.containerOptions {
+  display: flex;
+  justify-content: space-evenly;
+  padding-block: 2em;
+}
+
+.controls {
+  background-color: #fcf7f4;
+  padding: 0.7em;
+  border-radius: 00.5em;
+  margin-bottom: 2em;
+  border: 1px solid #5d8aac;
+}
+.btnHome {
+  font-size: 1em;
+  padding: 0.5em;
+  margin: 0.5em;
+}

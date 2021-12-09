@@ -11,30 +11,33 @@
   position: absolute;
   top: 68%;
   left: 46%;
-  background-color: #eee;
-  border: none;
-  padding: 1rem;
   font-size: 1rem;
+  padding: 1rem;
+}
+
+button {
+  background-color: #fcf7f4;
+  border: none;
   width: 10em;
   border-radius: 1rem;
-  color: #8a8da9;
-  box-shadow: 0 0.4rem #dfd9d9;
+  color: #5d8aac;
+  box-shadow: 0 0.4rem #cebebe;
   cursor: pointer;
 }
 
-.btnLanding:active {
+button:active {
   color: white;
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
 
-.btnLanding:hover:not(:disabled) {
-  background: #8a8da9;
+button:hover:not(:disabled) {
+  background: #5d8aac;
   color: white;
   text-shadow: 0 0.1rem #bcb4b4;
 }
 
-.btnLanding:disabled {
+button:disabled {
   cursor: auto;
-  color: grey;
+  color: #cebebe;
 }

@@ -1,0 +1,58 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #cfcfcf;
+  padding-top: 0.5em;
+}
+.containerCountry {
+  display: grid;
+
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: auto;
+
+  justify-items: center;
+  justify-content: center;
+}
+.formRegister {
+  width: 60em;
+  background-color: #8a8da9;
+  padding: 2%;
+  margin: auto;
+  margin-top: 5%;
+  border-radius: 4px;
+}
+
+.controlsInput {
+  width: 50em;
+
+  font-size: 1em;
+}
+
+.difficulty {
+  width: 20em;
+  font-size: 1em;
+}
+
+.season {
+  width: 30em;
+  font-size: 1em;
+}
+
+.search {
+  width: 40em;
+  font-size: 1em;
+}
+
+.controls {
+  background-color: #fcf7f4;
+  padding: 0.7em;
+  border-radius: 00.5em;
+  margin-bottom: 2em;
+  border: 1px solid #5d8aac;
+}
+
+.btnActivity {
+  font-size: 1em;
+  padding: 0.5em;
+  margin: 0.5em;
+}
