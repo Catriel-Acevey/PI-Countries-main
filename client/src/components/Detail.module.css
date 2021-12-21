@@ -4,3 +4,9 @@
   min-height: 100vh;
   padding-top: 1em;
 }
+
+.activitys {
+  background-color: #34675c;
+  width: 70%;
+  margin-left: 15%;
+}
