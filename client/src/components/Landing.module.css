@@ -10,12 +10,13 @@
 .btnLanding {
   position: absolute;
   top: 68%;
-  left: 46%;
-  font-size: 1rem;
+  left: 44%;
+  width: 8em;
+  font-size: 2rem;
   padding: 1rem;
 }
 
-button {
+/* button {
   background-color: #fcf7f4;
   border: none;
   width: 10em;
@@ -40,4 +41,27 @@ button:hover:not(:disabled) {
 button:disabled {
   cursor: auto;
   color: #cebebe;
+} */
+button {
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: #86ac41;
+  box-shadow: 0px 15px 20px rgba(134, 172, 65, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+button:active {
+  transform: translateY(-1px);
 }
