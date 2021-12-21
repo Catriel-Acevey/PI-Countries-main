@@ -16,6 +16,15 @@ const SEASON = {
   WINTER: "Invierno",
   SPRING: "Primavera",
 };
+const ORDER = {
+  ASCENDENTE: "ASC",
+  DESCENDENTE: "DESC",
+};
+const ORDER_BY = {
+  NAME: "name",
+  POPULATION: "population",
+  AREA: "area",
+};
 
 const Activity = (props) => {
   const dispatch = useDispatch();
@@ -70,7 +79,9 @@ const Activity = (props) => {
   };
   const getCountryName = (e) => {
     e.preventDefault();
-    dispatch(getNameCountriesForm(nameCountry));
+    dispatch(
+      getNameCountriesForm(ORDER_BY.NAME, ORDER.ASCENDENTE, nameCountry)
+    );
   };
   const deleteCountry = (e, id) => {
     e.preventDefault();

@@ -69,6 +69,7 @@ const getCountries = async (query) => {
             [Op.iLike]: "%" + name + "%",
           },
         },
+        order: [[orderBy, order]],
         include: { model: Activity },
       });
       return countries;

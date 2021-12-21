@@ -21,10 +21,17 @@ export function getCountries(orderBy, order) {
   };
 }
 
-export function getNameCountries(name) {
+export function getNameCountries(orderBy, order, name) {
   return async function (dispatch) {
     try {
-      var json = await axios("http://localhost:3001/countries?name=" + name);
+      var json = await axios(
+        "http://localhost:3001/countries?orderBy=" +
+          orderBy +
+          "&order=" +
+          order +
+          "&name=" +
+          name
+      );
       return dispatch({ type: GET_NAME_COUNTRIES, payload: json.data });
     } catch (err) {
       console.log(err);
@@ -32,10 +39,17 @@ export function getNameCountries(name) {
   };
 }
 
-export function getNameCountriesForm(name) {
+export function getNameCountriesForm(orderBy, order, name) {
   return async function (dispatch) {
     try {
-      var json = await axios("http://localhost:3001/countries?name=" + name);
+      var json = await axios(
+        "http://localhost:3001/countries?orderBy=" +
+          orderBy +
+          "&order=" +
+          order +
+          "&name=" +
+          name
+      );
       return dispatch({ type: GET_NAME_COUNTRIES_FORM, payload: json.data });
     } catch (err) {
       console.log(err);

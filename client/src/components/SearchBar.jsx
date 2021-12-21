@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getNameCountries } from "../actions";
 import styles from "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = ({ orderBy, order }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -14,7 +14,7 @@ const SearchBar = () => {
   };
   const runClick = (e) => {
     e.preventDefault();
-    dispatch(getNameCountries(name));
+    dispatch(getNameCountries(orderBy, order, name));
   };
 
   return (

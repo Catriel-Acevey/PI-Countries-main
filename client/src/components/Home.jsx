@@ -81,7 +81,7 @@ const Home = () => {
 
         <FilterRegion className={styles.controls} />
         <FilterActivity className={styles.controls} />
-        <SearchBar />
+        <SearchBar orderBy={orderBy} order={order} />
       </div>
       <div>
         <Paging
