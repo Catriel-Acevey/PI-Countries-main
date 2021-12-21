@@ -9,7 +9,7 @@ import FilterRegion from "./FilterRegion";
 import FilterActivity from "./FilterActivity";
 import Paging from "./Paging";
 import styles from "./Home.module.css";
-// import ITEMS_PER_PAGE from "../../../api/src/routes/index";
+
 const ORDER = {
   ASCENDENTE: "ASC",
   DESCENDENTE: "DESC",
@@ -17,24 +17,14 @@ const ORDER = {
 const ORDER_BY = {
   NAME: "name",
   POPULATION: "population",
+  AREA: "area",
 };
-// const COUNTRIES_PER_PAGE = 9;
-// const FILTER_CONTINENT = {
-//   ALL: "",
-//   SOUTH_AMERICA: "South America",
-//   AFRICA: "Africa",
-//   EUROPE: "Europe",
-//   ASIA: "Asia",
-//   NORTH_AMERICA: "North America",
-//   OCEANIA: "Oceania",
-//   ANTARCTICA: "Antarctica",
-// };
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const [orderBy, setOrderBy] = useState("name");
-  const [order, setOrder] = useState("ASC");
+  const [orderBy, setOrderBy] = useState(ORDER_BY.NAME);
+  const [order, setOrder] = useState(ORDER.ASCENDENTE);
   //---------------------------------------------
 
   useEffect(() => {
@@ -74,6 +64,7 @@ const Home = () => {
           >
             <option value={ORDER_BY.NAME}>Name</option>
             <option value={ORDER_BY.POPULATION}>population</option>
+            <option value={ORDER_BY.AREA}>Area</option>
           </select>
         </div>
         <div>

@@ -1,5 +1,6 @@
 .controls {
   background-color: #fcf7f4;
+  width: 30em;
   padding: 0.7em;
   border-radius: 00.5em;
   margin-bottom: 2em;
@@ -9,5 +10,4 @@
 .btnActivity {
   font-size: 1em;
   padding: 0.5em;
-  margin: 0.5em;
 }

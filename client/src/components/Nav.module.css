@@ -1,11 +1,19 @@
 .nav {
-  background-color: #8a8da9;
+  background-color: #324851;
   font-size: 1em;
   display: flex;
   justify-content: space-around;
   height: 4em;
 }
 
+.nav .link {
+  display: flex;
+  justify-content: space-around;
+  text-decoration: none;
+  color: #ffff;
+}
+
 .nav .active p {
   font-size: 1.3em;
+  text-decoration: underline;
 }

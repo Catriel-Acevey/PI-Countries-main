@@ -32,7 +32,7 @@ button:active {
 }
 
 button:hover:not(:disabled) {
-  background: #5d8aac;
+  background: #86ac41;
   color: white;
   text-shadow: 0 0.1rem #bcb4b4;
 }

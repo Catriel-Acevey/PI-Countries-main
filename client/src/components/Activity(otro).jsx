@@ -24,25 +24,44 @@ const Activity = (props) => {
 
   const countriesForm = useSelector((state) => state.countriesForm);
 
-  const [name, setName] = useState("");
-  const [difficulty, setDifficulty] = useState(1);
-  const [duration, setDuration] = useState("");
-  const [season, setSeason] = useState("");
-  const [nameCountry, setNameCountry] = useState("");
-  const [countries, setCountries] = useState([]);
-  const [countriesIds, setCountriesIds] = useState([]);
+  const [form, setForm] = useState({
+    name: "",
+    difficulty: 1,
+    season: "",
+    duration: "",
+    countriesIds: [],
+  });
+
+  const [countries, setCountries] = useState({
+    name: "",
+    results: [],
+  });
 
   useEffect(() => {
-    setCountries([...countries, ...countriesForm]);
-    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    setCountries({ ...countries, results: [...form.results, countriesForm] });
+    setForm({
+      ...form,
+      countriesIds: [...new Set(countries.results.map((c) => c.ID))],
+    });
   }, [dispatch, countriesForm]);
   useEffect(() => {
-    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
-  }, [dispatch, countries]);
+    setCountries({
+      ...countries,
+      ids: [...new Set(countries.results.map((c) => c.ID))],
+    });
+  }, [dispatch, countries.results]);
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(postActivity(name, difficulty, duration, season, countriesIds));
+    dispatch(
+      postActivity(
+        form.name,
+        form.difficulty,
+        form.duration,
+        form.season,
+        countries.countriesIds
+      )
+    );
     alert("Actividad creada con exito");
     dispatch(clearNameCountriesForm());
     history.push("/home");
@@ -50,32 +69,38 @@ const Activity = (props) => {
 
   const changeNameCountry = (e) => {
     e.preventDefault();
-    setNameCountry(e.target.value);
+    setCountries({ ...countries, name: e.target.value });
   };
   const changeName = (e) => {
     e.preventDefault();
-    setName(e.target.value);
+    setForm({ ...form, name: e.target.value });
   };
   const changeDifficulty = (e) => {
     e.preventDefault();
-    setDifficulty(e.target.value);
+    setForm({ ...form, name: e.target.value });
   };
   const changeDuration = (e) => {
     e.preventDefault();
-    setDuration(e.target.value);
+    setForm({ ...form, name: e.target.value });
   };
   const changeSeason = (e) => {
     e.preventDefault();
-    setSeason(e.target.value);
+    setForm({ ...form, name: e.target.value });
   };
   const getCountryName = (e) => {
     e.preventDefault();
-    dispatch(getNameCountriesForm(nameCountry));
+    dispatch(getNameCountriesForm(countries.name));
   };
   const deleteCountry = (e, id) => {
     e.preventDefault();
-    setCountries(countries.filter((c) => c.ID !== id));
-    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    setCountries({
+      ...countries,
+      results: countries.results.filter((c) => c.ID !== id),
+    });
+    setCountries({
+      ...countries,
+      ids: [...new Set(countries.results.map((c) => c.ID))],
+    });
   };
 
   return (
@@ -135,7 +160,7 @@ const Activity = (props) => {
           </button>
         </div>
         <div className={styles.containerCountry}>
-          {countries.map((country) => {
+          {countries.results.map((country) => {
             return (
               <Link
                 to=""
@@ -143,6 +168,7 @@ const Activity = (props) => {
                 onClick={(e) => deleteCountry(e, country.ID)}
               >
                 <CountryCard
+                  //Revisar warning con la key
                   name={country.name}
                   continent={country.continent}
                   flag_image={country.flag_image}

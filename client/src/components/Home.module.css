@@ -1,7 +1,7 @@
 .containerHome {
   width: 100vw;
   min-height: 100vh;
-  background-color: #cfcfcf;
+  background-color: #7da3a1;
 }
 
 .containerCountry {
@@ -30,5 +30,4 @@
 .btnHome {
   font-size: 1em;
   padding: 0.5em;
-  margin: 0.5em;
 }

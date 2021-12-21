@@ -25,7 +25,11 @@ const SearchBar = () => {
         placeholder="Search"
         onChange={(e) => inputChange(e)}
       ></input>
-      <button className={styles.btnActivity} onClick={(e) => runClick(e)}>
+      <button
+        type="submit"
+        className={styles.btnActivity}
+        onClick={(e) => runClick(e)}
+      >
         Search
       </button>
     </div>

@@ -18,6 +18,7 @@ const Nav = () => {
         className={styles.link}
         activeClassName={styles.active}
       >
+        {/* <img src="../../img/activity.png" /> */}
         <p>Create Activity</p>
       </NavLink>
     </div>
