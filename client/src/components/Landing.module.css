@@ -16,34 +16,7 @@
   padding: 1rem;
 }
 
-/* button {
-  background-color: #fcf7f4;
-  border: none;
-  width: 10em;
-  border-radius: 1rem;
-  color: #5d8aac;
-  box-shadow: 0 0.4rem #cebebe;
-  cursor: pointer;
-}
-
-button:active {
-  color: white;
-  box-shadow: 0 0.2rem #dfd9d9;
-  transform: translateY(0.2rem);
-}
-
-button:hover:not(:disabled) {
-  background: #86ac41;
-  color: white;
-  text-shadow: 0 0.1rem #bcb4b4;
-}
-
-button:disabled {
-  cursor: auto;
-  color: #cebebe;
-} */
 button {
-  letter-spacing: 2.5px;
   font-weight: 500;
   color: #000;
   background-color: #fff;
