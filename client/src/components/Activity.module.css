@@ -48,7 +48,7 @@
   background-color: #fcf7f4;
   padding: 0.7em;
   border-radius: 00.5em;
-  margin-bottom: 2em;
+  margin-top: 2em;
   border: 1px solid #5d8aac;
 }
 
@@ -63,4 +63,13 @@
   width: 40em;
   padding: 0.7em;
   margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+p.danger {
+  color: #dc143c;
+}
+
+input.danger {
+  border: 2px solid #dc143c;
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import CountryCard from "./CountryCard";
+import validate from "./../validations/validateActivity";
 import {
   postActivity,
   getNameCountriesForm,
@@ -33,11 +34,14 @@ const Activity = (props) => {
 
   const countriesForm = useSelector((state) => state.countriesForm);
 
-  const [name, setName] = useState("");
-  const [difficulty, setDifficulty] = useState(1);
-  const [duration, setDuration] = useState("");
-  const [season, setSeason] = useState("");
-  const [nameCountry, setNameCountry] = useState("");
+  const [data, setData] = useState({
+    name: "",
+    difficulty: 1,
+    season: SEASON.SUMMER,
+    duration: "",
+    nameCountry: "",
+  });
+  let [error, setError] = useState({});
   const [countries, setCountries] = useState([]);
   const [countriesIds, setCountriesIds] = useState([]);
 
@@ -49,38 +53,33 @@ const Activity = (props) => {
     setCountriesIds([...new Set(countries.map((c) => c.ID))]);
   }, [dispatch, countries]);
 
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setData({ ...data, [e.target.name]: e.target.value });
+
+    setError(validate({ ...data, [e.target.name]: e.target.value }));
+  };
+
   const submit = (e) => {
     e.preventDefault();
-    dispatch(postActivity(name, difficulty, duration, season, countriesIds));
+    dispatch(
+      postActivity(
+        data.name,
+        data.difficulty,
+        data.duration,
+        data.season,
+        countriesIds
+      )
+    );
     alert("Actividad creada con exito");
     dispatch(clearNameCountriesForm());
     history.push("/home");
   };
 
-  const changeNameCountry = (e) => {
-    e.preventDefault();
-    setNameCountry(e.target.value);
-  };
-  const changeName = (e) => {
-    e.preventDefault();
-    setName(e.target.value);
-  };
-  const changeDifficulty = (e) => {
-    e.preventDefault();
-    setDifficulty(e.target.value);
-  };
-  const changeDuration = (e) => {
-    e.preventDefault();
-    setDuration(e.target.value);
-  };
-  const changeSeason = (e) => {
-    e.preventDefault();
-    setSeason(e.target.value);
-  };
   const getCountryName = (e) => {
     e.preventDefault();
     dispatch(
-      getNameCountriesForm(ORDER_BY.NAME, ORDER.ASCENDENTE, nameCountry)
+      getNameCountriesForm(ORDER_BY.NAME, ORDER.ASCENDENTE, data.nameCountry)
     );
   };
   const deleteCountry = (e, id) => {
@@ -94,16 +93,24 @@ const Activity = (props) => {
       <form onSubmit={(e) => submit(e)}>
         <div className={styles.formRegister}>
           <input
-            className={styles.controls + " " + styles.controlsInput}
-            type="text"
+            name={"name"}
             placeholder=" Name "
-            onChange={(e) => changeName(e)}
-          ></input>
+            className={
+              styles.controls +
+              " " +
+              styles.controlsInput +
+              " " +
+              (error.name && styles.danger)
+            }
+            type="text"
+            value={data.name}
+            onChange={handleInputChange}
+          />
+          {error.name && <p className={styles.danger}>{error.name}</p>}
           <select
+            name={"difficulty"}
             className={styles.controls + " " + styles.difficulty}
-            onChange={(e) => {
-              changeDifficulty(e);
-            }}
+            onChange={handleInputChange}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -112,10 +119,9 @@ const Activity = (props) => {
             <option value={5}>5</option>
           </select>
           <select
+            name={"season"}
             className={styles.controls + " " + styles.season}
-            onChange={(e) => {
-              changeSeason(e);
-            }}
+            onChange={handleInputChange}
           >
             <option value={SEASON.SUMMER}>{SEASON.SUMMER}</option>
             <option value={SEASON.AUTUMN}>{SEASON.AUTUMN}</option>
@@ -123,17 +129,28 @@ const Activity = (props) => {
             <option value={SEASON.SPRING}>{SEASON.SPRING}</option>
           </select>
           <input
-            className={styles.controls + " " + styles.controlsInput}
-            type="text"
+            name={"duration"}
             placeholder=" Duration "
-            onChange={(e) => changeDuration(e)}
-          ></input>
+            className={
+              styles.controls +
+              " " +
+              styles.controlsInput +
+              " " +
+              (error.duration && styles.danger)
+            }
+            type="text"
+            value={data.duration}
+            onChange={handleInputChange}
+          />
+          {error.duration && <p className={styles.danger}>{error.duration}</p>}
           <input
+            name={"nameCountry"}
+            placeholder="Nombre del pais"
             className={styles.controls + " " + styles.search}
             type="text"
-            placeholder="Nombre del pais"
-            onChange={(e) => changeNameCountry(e)}
-          ></input>
+            value={data.nameCountry}
+            onChange={handleInputChange}
+          />
           <button
             className={styles.btnActivity}
             onClick={(e) => getCountryName(e)}
@@ -141,7 +158,11 @@ const Activity = (props) => {
             {" "}
             Buscar{" "}
           </button>
-          <button className={styles.btnSend} type="submit">
+          <button
+            className={styles.btnSend}
+            type="submit"
+            disabled={error.name || error.duration}
+          >
             Enviar
           </button>
         </div>
