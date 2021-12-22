@@ -14,7 +14,7 @@
   justify-content: center;
 }
 .formRegister {
-  width: 60em;
+  width: 37em;
   background-color: #34675c;
   padding: 2%;
   margin: auto;
@@ -24,23 +24,23 @@
 }
 
 .controlsInput {
-  width: 50em;
+  width: 32em;
 
   font-size: 1em;
 }
 
 .difficulty {
-  width: 20.7em;
+  width: 4em;
   font-size: 1em;
 }
 
 .season {
-  width: 30.7em;
+  width: 10em;
   font-size: 1em;
 }
 
 .search {
-  width: 40.7em;
+  width: 22em;
   font-size: 1em;
 }
 
@@ -53,14 +53,14 @@
 }
 
 .btnActivity {
-  width: 9em;
+  width: 10em;
   font-size: 1em;
   padding: 0.5em;
   margin-bottom: 0.5em;
 }
 
 .btnSend {
-  width: 60.7em;
+  width: 40em;
   padding: 0.7em;
   margin-bottom: 2em;
 }
