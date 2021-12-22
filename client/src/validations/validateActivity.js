@@ -9,7 +9,7 @@ export default function validate(data) {
     error.duration = "Duration is necessary";
   }
 
-  if (!data.countriesIds) {
+  if (!data.countriesIds.length) {
     error.countriesIds = "you need at least one country";
   }
 

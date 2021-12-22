@@ -68,6 +68,7 @@
 
 p.danger {
   color: #dc143c;
+  font-weight: 700;
 }
 
 input.danger {

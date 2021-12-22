@@ -40,17 +40,25 @@ const Activity = (props) => {
     season: SEASON.SUMMER,
     duration: "",
     nameCountry: "",
+    countriesIds: [],
   });
   let [error, setError] = useState({});
   const [countries, setCountries] = useState([]);
-  const [countriesIds, setCountriesIds] = useState([]);
+  // const [countriesIds, setCountriesIds] = useState([]);
 
   useEffect(() => {
     setCountries([...countries, ...countriesForm]);
-    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    // setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    setData({
+      ...data,
+      countriesIds: [...new Set(countries.map((c) => c.ID))],
+    });
   }, [dispatch, countriesForm]);
   useEffect(() => {
-    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    setData({
+      ...data,
+      countriesIds: [...new Set(countries.map((c) => c.ID))],
+    });
   }, [dispatch, countries]);
 
   const handleInputChange = (e) => {
@@ -68,7 +76,7 @@ const Activity = (props) => {
         data.difficulty,
         data.duration,
         data.season,
-        countriesIds
+        data.countriesIds
       )
     );
     alert("Actividad creada con exito");
@@ -85,7 +93,11 @@ const Activity = (props) => {
   const deleteCountry = (e, id) => {
     e.preventDefault();
     setCountries(countries.filter((c) => c.ID !== id));
-    setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    // setCountriesIds([...new Set(countries.map((c) => c.ID))]);
+    setData({
+      ...data,
+      countriesIds: [...new Set(countries.map((c) => c.ID))],
+    });
   };
 
   return (
@@ -158,10 +170,13 @@ const Activity = (props) => {
             {" "}
             Buscar{" "}
           </button>
+          {error.countriesIds && (
+            <p className={styles.danger}>{error.countriesIds}</p>
+          )}
           <button
             className={styles.btnSend}
             type="submit"
-            disabled={error.name || error.duration}
+            disabled={error.name || error.duration || error.countriesIds}
           >
             Enviar
           </button>
