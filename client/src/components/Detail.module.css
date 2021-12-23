@@ -6,7 +6,12 @@
 }
 
 .activitys {
-  background-color: #34675c;
+  display: flex;
+  justify-content: space-evenly;
   width: 70%;
   margin-left: 15%;
+}
+.activity {
+  background-color: #34675c;
+  width: 25%;
 }

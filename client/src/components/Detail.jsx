@@ -23,11 +23,11 @@ const Detail = (props) => {
       <h3> Subregion: {country.subregion}</h3>
       <h3> Area: {country.area} KM²</h3>
       <h3> Poblacion: {country.population}</h3>
+      <h2>Data Activity</h2>
       <div className={styles.activitys}>
-        <h2>Data Activity</h2>
         {country.activities?.length ? (
           country.activities.map((activity) => (
-            <div>
+            <div key={activity.id} className={styles.activity}>
               <h4>
                 {" "}
                 {activity.name.charAt(0).toUpperCase() +
