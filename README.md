@@ -40,8 +40,8 @@ DB_HOST=localhost
 ```
 - Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres.
 - Crear desde psql una base de datos llamada `countries` con el comando `CREATE DATABASE countries`
-- Abrir una consola y cambiar el directorio hacia la carpeta `api` y ejecutar `npm start`
-- Abrir una nueva consola y cambiar el directorio hacia la carpeta `client` y ejecutar `npm start`
+- Abrir una consola, cambiar el directorio hacia la carpeta `api`, ejecutar `npm install` y una ves finalizada la instalacion ejecutar `npm start`
+- Abrir una nueva consola, cambiar el directorio hacia la carpeta `client`, ejecutar `npm install` y una ves finalizada la instalacion ejecutar `npm start`
 
 
 ### Sobre la APP
