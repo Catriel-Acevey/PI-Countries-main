@@ -56,23 +56,23 @@ Es una aplicación en la cual se pueda ver información de  distintos paises uti
 ### Pagina Landing
 
 <p align="center">
-  <img height="500" src="./images/app-landing.png" />
+  <img src="./images/app-landing.png" />
 </p>
 
 ### Pagina Home
 
 <p align="center">
-  <img height="500" src="./images/app-home.png" />
+  <img src="./images/app-home.png" />
 </p>
 
 ### Pagina Details
 
 <p align="center">
-  <img height="500" src="./images/app-details.png" />
+  <img src="./images/app-details.png" />
 </p>
 
 ### Pagina Create Activity
 
 <p align="center">
-  <img height="500" src="./images/app-create.png" />
+  <img src="./images/app-create.png" />
 </p>
