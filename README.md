@@ -84,7 +84,7 @@ Es una aplicación en la cual se pueda ver información de  distintos paises uti
   - Filtrarlos / Ordenarlos
   - Crear actividades turísticas
 
-#### Frontend
+### Frontend
 
 Es una aplicación de React/Redux que contiene las siguientes pantallas/rutas.
 
@@ -120,7 +120,7 @@ __Ruta de creación de actividad turística__: contiene
 - [ ] Posibilidad de seleccionar/agregar varios países en simultaneo
 - [ ] Botón para crear una nueva actividad turística
 
-#### Base de datos
+### Base de datos
 
 El modelo de la base de datos tiene las siguientes entidades (Aquellas propiedades marcadas con asterísco son obligatorias):
 
@@ -142,7 +142,7 @@ El modelo de la base de datos tiene las siguientes entidades (Aquellas propiedad
 
 La relación entre ambas entidades es de muchos a muchos ya que un país puede contener varias actividades turísticas y, a su vez, una actividad turística puede darse en múltiples países.
 
-#### Backend
+### Backend
 
 Es un servidor en Node/Express con las siguientes rutas:
 
